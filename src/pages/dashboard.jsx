@@ -12,26 +12,15 @@ import { Link } from 'react-router-dom';
 export const Dashboard = () => {
   const history = useHistory()
   const [connecting, setConnecting] = useState(false)
-  const { select } = useWallet()
+  const { connected, select } = useWallet()
   const [postTitle, setPostTitle] = useState("")
   const [postContent, setPostContent] = useState("")
 
-  // Static Data
-  const user = {
-    name: "Mentee1",
-    avatar: "https://avatarfiles.alphacoders.com/283/thumb-283778.jpg",
-  }
-  const connected = true
-  const posts = []
+  const { user, initialized, initUser, posts, createPost, showModal, setShowModal } = useBlog()
 
-  const createPost = () => {
+ 
 
-  }
 
-  const showModal = false
-  const setShowModal = () => {
-
-  }
   /////////////////
 
   const onConnect = () => {
@@ -56,23 +45,22 @@ export const Dashboard = () => {
             </div>
           </h2>
           {connected ? (
-          <div className="flex items-center">
-            <Link to="/leaderboard" className=" font-bold text-sm ml-2 capitalize underlinepink">
-              LeaderBoard
-            </Link>
-            <p className=" font-bold text-sm ml-2 capitalize underlinepink">
-              Sessions
-            </p>
-            <p className=" font-bold text-sm ml-2 capitalize underlinepink">
-              Post for Help
-            </p>
-            <p className=" font-bold text-sm ml-2 capitalize underlinepink">
-              Post to Help
-            </p>
-            <p className=" font-bold text-sm ml-2 capitalize mr-4 underlinepink">
-              All
-            </p>
-              
+            <div className="flex items-center">
+              <Link to="/leaderboard" className=" font-bold text-sm ml-2 capitalize underlinepink">
+                LeaderBoard
+              </Link>
+              <p className=" font-bold text-sm ml-2 capitalize underlinepink">
+                Sessions
+              </p>
+              <p className=" font-bold text-sm ml-2 capitalize underlinepink">
+                Post for Help
+              </p>
+              <p className=" font-bold text-sm ml-2 capitalize underlinepink">
+                Post to Help
+              </p>
+              <p className=" font-bold text-sm ml-2 capitalize mr-4 underlinepink">
+                All
+              </p>
               <img
                 src={user?.avatar}
                 alt="avatar"
@@ -81,14 +69,26 @@ export const Dashboard = () => {
               <p className=" font-bold text-sm ml-2 capitalize">
                 {user?.name}
               </p>
-              <Button
-                className="ml-3 mr-2"
-                onClick={() => {
-                  setShowModal(true)
-                }}
-              >
-                Make a Post
-              </Button>
+              {initialized ? (
+                <Button
+                  className="ml-3 mr-2"
+                  onClick={() => {
+                    setShowModal(true)
+                  }}
+                >
+                  Make a Post
+                </Button>
+              ) : (
+                <Button
+                  className="ml-3 mr-2"
+                  onClick={() => {
+                    initUser()
+                  }}
+                >
+                  Initialize User
+                </Button>
+              )}
+
             </div>
           ) : (
             <Button
@@ -122,53 +122,53 @@ export const Dashboard = () => {
           {/* <h1 className="title">The Blog</h1> */}
           <div className="row">
 
-          <article className="best-post">
-            <div className="post-box">
-              <div className="best-post-content">
-                <div className="best-post-content-cat">May 2, 2023<span className="dot"> </span>Post for Help</div>
-                <Link to="/fullpostsample">
-                  <div className="best-post-content-title">
-                    Seeking a JavaScript Mentor to Help with Bug Fixing
-                  </div>
-                </Link>
-                <div className="best-post-content-sub">
-                  I'm currently working on a JavaScript project and have come across a bug that I can't seem to fix on my own. I'm reaching out to see if anyone would be willing to mentor me through this process and help me find a solution.
+            <article className="best-post">
+              <div className="post-box">
+                <div className="best-post-content">
+                  <div className="best-post-content-cat">May 2, 2023<span className="dot"> </span>Post for Help</div>
+                  <Link to="/fullpostsample">
+                    <div className="best-post-content-title">
+                      Seeking a JavaScript Mentor to Help with Bug Fixing
+                    </div>
+                  </Link>
+                  <div className="best-post-content-sub">
+                    I'm currently working on a JavaScript project and have come across a bug that I can't seem to fix on my own. I'm reaching out to see if anyone would be willing to mentor me through this process and help me find a solution.
 
-                  If you have experience with JavaScript and are available to provide some guidance, please let me know. I'm open to any suggestions or tips that could help me resolve this issue.
+                    If you have experience with JavaScript and are available to provide some guidance, please let me know. I'm open to any suggestions or tips that could help me resolve this issue.
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
+            </article>
 
 
             <div className="all__posts">
               {posts.map((item) => {
-                
+
                 return (
                   <Link
                     to={`/read-post/${item.publicKey.toString()}`}
                     key={item.account.id}
                     className="post__card-2"
                   >
-                  <article className="post__card-2"
-                    onClick={() => {
-                      history.push(`/read-post/${item.publicKey.toString()}`)
-                    }}
-                    key={item.account.id}
-                  >
-                    <div className="post__card_-2">
-                     
-                      <div>
-                        <div className="post__card_meta-2">
-                          <div className="post__card_cat">May 2, 2023<span className="dot"> </span>{item.account.title} </div>
-                          <p className="post__card_alttitle-2">
-                            {item.account.content}
-                          </p>
+                    <article className="post__card-2"
+                      onClick={() => {
+                        history.push(`/read-post/${item.publicKey.toString()}`)
+                      }}
+                      key={item.account.id}
+                    >
+                      <div className="post__card_-2">
+
+                        <div>
+                          <div className="post__card_meta-2">
+                            <div className="post__card_cat">May 2, 2023<span className="dot"> </span>{item.account.title} </div>
+                            <p className="post__card_alttitle-2">
+                              {item.account.content}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </article>
-                </Link>
+                    </article>
+                  </Link>
                 )
               })}
             </div>
