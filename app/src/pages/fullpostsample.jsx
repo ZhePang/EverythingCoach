@@ -1,15 +1,23 @@
+import { Link } from 'react-router-dom';
 export const FullPost1 = () => {
   return (
+    <body class="post-page">
     <div className="full-page-container" style={{ backgroundColor: "#6c0ab6" }}>
+      <div className="header">
+        <h1>Post for Help</h1>
+        <div className="back-to-home">
+          <Link to="/">Back to Home</Link>
+        </div>
+      </div>
     <div className="full-post-container background-color">
       <div className="post-header">
         
-        <h1 className="post-title">Seeking a JavaScript Mentor to Help with Bug Fixing</h1>
+        <h1 className="post-title">Help: Seeking a JavaScript Mentor to Help with Bug Fixing</h1>
         <div className="post-author">
           <img className="avatar" src="https://avatarfiles.alphacoders.com/283/thumb-283778.jpg" alt="avatar" />
           <p className="author-name">Unknown Author</p>
         </div>
-        <p className="post-meta">May 2, 2023</p>
+        
       </div>
       <div className="post-content">
         <p>
@@ -18,39 +26,47 @@ export const FullPost1 = () => {
         </p>
       </div>
       <div className="comments">
-        <h2>Comments</h2>
+        
+        <h2 style={{ fontSize: "24px", color: "white", marginBottom: "20px" }}>Coach Offerings</h2>
+        <h3 style={{ fontSize: "18px", color: "lightgray", marginBottom: "3px" }}>Click on Coach to View Profile</h3>
+
+      
+
         <div className="comment">
-          <div className="comment-header">
+        <div className="comment-header">
+          <Link to="/profile">
             <img className="avatar" src="https://avatarfiles.alphacoders.com/283/thumb-283778.jpg" alt="avatar" />
-            <p className="author-name">John Doe</p>
-            <p className="comment-date">May 3, 2023</p>
-          </div>
+            <span className="tooltip">Click to view profile</span>
+          </Link>
+          <p className="author-name-comment">John Doe</p>
+        </div>
           <div className="comment-content">
-            <p>This is a great post, thanks for sharing!</p>
+            <p>I'm available for the <strong>Javascript Help</strong> session on May 1, 2023. Let me know if you're interested!</p>
+            <div className="availability-slots">
+              <div className="availability-slot">
+                <p>Slot 1: May 1, 2023 at 10:00 AM</p>
+                <Link to="/schedule">
+                  <button className="schedule-button">Schedule</button>
+                </Link>
+              </div>
+              <div className="availability-slot">
+                <p>Slot 2: May 1, 2023 at 2:00 PM</p>
+                <Link to="/schedule">
+                  <button className="schedule-button">Schedule</button>
+                </Link>              </div>
+              <div className="availability-slot">
+                <p>Slot 3: May 1, 2023 at 6:00 PM</p>
+                <Link to="/schedule">
+                  <button className="schedule-button">Schedule</button>
+                </Link>              
+                </div>
+            </div>
           </div>
         </div>
-        <div className="comment">
-          <div className="comment-header">
-            <img className="avatar" src="https://avatarfiles.alphacoders.com/283/thumb-283778.jpg" alt="avatar" />
-            <p className="author-name">Jane Doe</p>
-            <p className="comment-date">May 4, 2023</p>
-          </div>
-          <div className="comment-content">
-            <p>Have you tried using the Chrome Developer Tools to debug the issue?</p>
-          </div>
-        </div>
-        <div className="comment">
-          <div className="comment-header">
-            <img className="avatar" src="https://avatarfiles.alphacoders.com/283/thumb-283778.jpg" alt="avatar" />
-            <p className="author-name">Bob Smith</p>
-            <p className="comment-date">May 5, 2023</p>
-          </div>
-          <div className="comment-content">
-            <p>I'm available to help if you still need assistance. Please let me know.</p>
-          </div>
-        </div>
+      
       </div>
     </div>
     </div>
+    </body>
   );
 };

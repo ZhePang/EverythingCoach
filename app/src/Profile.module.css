@@ -1,0 +1,103 @@
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    max-width: 800px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    color: #6c0ab6;
+  }
+  
+  /* other styles remain the same */
+  
+  /* change background color of the page */
+  body {
+    color: #0a66c2;
+    background: linear-gradient(to bottom right, #1b1c47, #6c0ab6);
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  
+  
+  .profile-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    text-align: left;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-name {
+    color: #6c0ab6;
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .profile-header {
+    color: #6c0ab6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    width: 100%;
+    background-color: #0a66c2;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    
+    border: 2px solid #ffffff;
+    object-fit: cover;
+  }
+  
+  .profile-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .profile-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .profile-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .chat-button {
+    
+    margin-top: 1rem; /* add margin to create space around the button */
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: #6c0ab6;
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .chat-button:hover {
+    background-color: #4f0473;
+  }
+  
